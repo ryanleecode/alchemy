@@ -54,6 +54,7 @@ export const additionalModulesPlugin = createPlugin("additional-modules", () => 
           return {
             id: moduleReferenceId(rule.type, filePath),
             external: true,
+            moduleSideEffects: false,
           };
         },
       },
