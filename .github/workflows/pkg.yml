@@ -48,8 +48,8 @@ jobs:
   publish:
     name: Publish preview packages
     # `labeled` is only for `force-ci`, which repacks every package.
-    if: github.event.action != 'labeled' || github.event.label.name == 'force-ci'
-    runs-on: blacksmith-8vcpu-ubuntu-2404
+    if: github.repository == 'alchemy-run/alchemy' && (github.event.action != 'labeled' || github.event.label.name == 'force-ci')
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1

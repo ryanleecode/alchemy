@@ -30,7 +30,8 @@ env:
 jobs:
   build:
     name: Build and pack
-    runs-on: blacksmith-8vcpu-ubuntu-2404
+    if: github.repository == 'alchemy-run/alchemy'
+    runs-on: ubuntu-latest
     outputs:
       sha: ${{ steps.commit.outputs.sha }}
       version: ${{ steps.release.outputs.version }}
@@ -94,6 +95,7 @@ jobs:
   publish:
     name: Publish
     needs: build
+    if: github.repository == 'alchemy-run/alchemy'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository

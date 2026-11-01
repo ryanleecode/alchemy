@@ -18,7 +18,8 @@ concurrency:
 jobs:
   sync:
     name: Sync
-    runs-on: blacksmith-8vcpu-ubuntu-2404
+    if: github.repository == 'alchemy-run/alchemy'
+    runs-on: ubuntu-latest
     env:
       BRANCH: chore/sync-cloudflare-permission-groups
       CATALOG: packages/cloudflare/src/ApiToken/PermissionGroups.ts

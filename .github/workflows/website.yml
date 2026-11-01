@@ -76,13 +76,14 @@ jobs:
     # then deploys the preview while the PR is open and labeled, and
     # destroys it otherwise (closed, or the label was removed).
     if: >-
+      github.repository == 'alchemy-run/alchemy' && (
       github.event_name != 'pull_request' ||
       (github.event.pull_request.head.repo.full_name == github.repository &&
        (contains(github.event.pull_request.labels.*.name, 'deploy-website') ||
         github.event.action == 'unlabeled') &&
        ((github.event.action != 'labeled' && github.event.action != 'unlabeled') ||
-        github.event.label.name == 'deploy-website'))
-    runs-on: blacksmith-4vcpu-ubuntu-2404
+        github.event.label.name == 'deploy-website')))
+    runs-on: ubuntu-latest
     permissions:
       contents: read
       pull-requests: write
